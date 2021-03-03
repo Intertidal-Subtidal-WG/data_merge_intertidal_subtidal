@@ -6,15 +6,17 @@ pkgs <- c("tidyverse", "janitor", "stringdist")
 lapply(pkgs, library, character.only = TRUE)
 
 # read in all the files as objects
-file.names <- list.files(path = "./raw_data/keen/", pattern = "*.csv", full.names = TRUE)
+file.names <- list.files(path = "./SEED_data/subtidal_KEEN_data/", pattern = "*.csv", full.names = TRUE)
 
 list2env(lapply(setNames(file.names, make.names(gsub(".*//", "", tools::file_path_sans_ext(file.names)))), 
                 read_csv), envir = .GlobalEnv)
 
-file.names <- list.files(path = "./raw_data/intertidal/", pattern = "*.csv", full.names = TRUE)
+# the next lines of code keep causing fatal errors with the new folder structure. not sure why.
+#file.names <- list.files(path = "./SEED_data/intertidal_data/", pattern = "*.csv", full.names = TRUE)
 
-list2env(lapply(setNames(file.names, make.names(gsub(".*//", "", tools::file_path_sans_ext(file.names)))), 
-                read_csv), envir = .GlobalEnv)
+#list2env(lapply(setNames(file.names, make.names(gsub(".*//", "", tools::file_path_sans_ext(file.names)))), read_csv), envir = .GlobalEnv)
+
+species_list_aggregate <- read_csv("./SEED_data/intertidal_data/species_list_aggregate.csv")
 
 # get species names from KEEN files
 
@@ -35,34 +37,46 @@ all_division_names <- division_names_cover %>%
   # change case of column names to lowercase
   clean_names(case = "snake")
 
-# making this the master list of common division names
+## read in categories from KEEN surveys
 keen_names <- levels(as.factor(all_division_names$common_division_name))
 
 ### now read in the intertidal species list
-itz_names <- levels(as.factor(species_list_aggregate$subtype))
-
-# Looking at these lists of names, only small-ish adjustments need to be made here
+itz_names <- levels(as.factor(species_list_aggregate$subtype)) %>% str_replace_all(itz_names, c("Alag" = "Alga"))
 
 # fuzzy match the intertidal name list with the KEEN names
 matches_in_keen <- amatch(itz_names, keen_names, maxDist = 1)
 
-keen_name <- c()
+# now create the final shared column of common division name keys
+common_division_name <- c()
 
+# if there is a match between intertidal and subtidal, then use the KEEN name
 for (i in 1:length(matches_in_keen)){
   if (is.na(matches_in_keen[i]) == FALSE){
-    keen_name[i] <- keen_names[matches_in_keen[i]]
+    common_division_name[i] <- keen_names[matches_in_keen[i]]
   }
+  # but if there is no match, leave it empty
   else {
-    keen_name[i] <- NA
+    common_division_name[i] <- NA
   }
 }
 
-matches <- as.data.frame(cbind(itz_names, keen_name)) %>% 
-  mutate(keen_name = if_else(str_detect(itz_names, pattern = "Brown Al"), "Brown Algae", keen_name)) %>% 
-  mutate(keen_name = if_else(is.na(keen_name), itz_names, keen_name)) %>% 
-  mutate(keen_name = str_replace_all(keen_name, c("Worm" = "Worms", "Polyplacophora" = "Polyplacophorans",
-                                                  "Hydrozoan" = "Hydrozoans"))) %>% 
-  rename(common_division_name = keen_name,
-         subtype = itz_names)
+# Need to classify brown algae as erect in the initial KEEN data and preserve unique subtidal taxa
+keen_original <- as.data.frame(cbind(keen_names, keen_names)) %>% 
+  # we will eventually join with the other intertidal relabeled set by common_division_name
+  # COMMON.DIVISION.NAME is the KEEN column heading, so preserve this scheme for converting to 
+  # the new division naming system later
+  rename(common_division_name = 1, COMMON.DIVISION.NAME = 2) %>% 
+  mutate(common_division_name = str_replace_all(common_division_name, c("Brown Algae" = "Erect Brown Algae")))
 
-write_csv(matches, "./subtype_to_divisionname.csv")
+# now join everything together to have three columns - one for the intertidal original names (subtype),
+# one for the KEEN original names (COMMON.DIVISION.NAME), and one for the shared key between the two.
+division_name_keys <- as.data.frame(cbind(itz_names, common_division_name)) %>% 
+  mutate(common_division_name = if_else(is.na(common_division_name), itz_names, common_division_name)) %>% 
+  # convert the intertidal names that are singular to plural
+  mutate(common_division_name = str_replace_all(common_division_name, c("Worm" = "Worms",
+                                                  "Hydrozoan" = "Hydrozoa"))) %>% 
+  rename(subtype = itz_names) %>% 
+  full_join(keen_original)
+
+# write the final data file
+# write_csv(division_name_keys, "./division_name_keys.csv")
