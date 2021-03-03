@@ -22,6 +22,9 @@ install.packages("devtools")
 install.packages("lme4")
 install.packages("knitr")
 install.packages("ts")
+# To create presnece absence matrix
+install.packages("letsR")
+
 
 
 library(tidyverse)
@@ -33,6 +36,7 @@ library(data.table)
 library(extrafont)
 library(visreg)
 library(lubridate)
+library(letsR)
 #library(ts)
 
 
@@ -114,6 +118,31 @@ write.csv(keen_all_methods_site_merged, "keen_all_methods_site_merged.csv")
 
 unique(keen_all_methods_site_merged$SP_CODE)
 
+#8#Merge datasets for counts only ( keen_fish.	keen_quads,	keen_swath,)
+keen_all_counts_merged<-bind_rows(keen_fish,keen_quads)
+keen_all_counts_merged<-bind_rows(keen_all_counts_merged,keen_swath)
+
+#8.1. Merge with keen.sites for information about sites
+
+keen_sites<-unite_(keen_sites, "YEAR_MONTH_DAY_TRANSECT", c("YEAR","MONTH","DAY","TRANSECT"),remove=FALSE )
+keen_all_counts_merged<-unite (keen_all_counts_merged, "YEAR_MONTH_DAY_TRANSECT", c("YEAR","MONTH","DAY","TRANSECT"),remove=FALSE)
+
+#select (keen_sites) to avoid duplicate variables when merging
+
+keen_sites<-select(keen_sites, -NETWORK,-PI,-YEAR,-MONTH,-DAY,-SITE,-TRANSECT)
+keen_all_counts_site_merged<-left_join(keen_all_counts_merged, keen_sites, by = "YEAR_MONTH_DAY_TRANSECT")
+
+
+#Create a presence absence matrix _Site_year per species_code; only for groups that have a count data set ()
+#For the presence absence we can use the data sets keen_fish.	keen_quads.	keen_swath, and keen_cover (but need to transform the species column into presneces), in theory we could also use keen kelp data and percentage cover if we summarise the number of individuals detected 
+#For the abundance matrix we can use use only data sets with counts (keen_fish.	keen_quads.	keen_swath)
+
+#The Keen_kelp data does not need to be use for the counts (PRESENCE/ABSENCE), because kelp was counted in the 
+
+#Presence/Anbsence matrix
+create.matrix()
+
+
 
 
 ###### Exercise filter species of interest
@@ -121,7 +150,6 @@ unique(keen_all_methods_site_merged$SP_CODE)
 AGCL<-filter(keen_all_methods_site_merged, SP_CODE=="AGCL" )
 
 TAAD<-filter(keen_all_methods_merged, SP_CODE=="TAAD" )
-
 
 
 plot(COUNT~YEAR, data=AGCL)
