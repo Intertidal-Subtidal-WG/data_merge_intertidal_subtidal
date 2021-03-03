@@ -1,11 +1,11 @@
 ### ASSIGNING COMMON DIVISION NAMES TO INTERTIDAL SPECIES
 
-library(tidyverse)
-library(janitor)
-library(stringdist)
+# load in all the necessary packages
+pkgs <- c("tidyverse", "janitor", "stringdist")
+
+lapply(pkgs, library, character.only = TRUE)
 
 # read in all the files as objects
-
 file.names <- list.files(path = "./raw_data/keen/", pattern = "*.csv", full.names = TRUE)
 
 list2env(lapply(setNames(file.names, make.names(gsub(".*//", "", tools::file_path_sans_ext(file.names)))), 
@@ -18,33 +18,32 @@ list2env(lapply(setNames(file.names, make.names(gsub(".*//", "", tools::file_pat
 
 # get species names from KEEN files
 
+# first from the cover data
 division_names_cover <- keen_cover %>% 
   select(SP_CODE, GROUP:SPECIES) %>% 
   unique()
 
+# next from the quadrat data
 division_names_quads <- keen_quads %>% 
   select(SP_CODE, GROUP:SPECIES) %>% 
   unique()
 
+# join these two name lists together
 all_division_names <- division_names_cover %>% 
   full_join(division_names_quads) %>% 
   filter(GROUP != "Substrate") %>% 
   # change case of column names to lowercase
   clean_names(case = "snake")
 
+# making this the master list of common division names
 keen_names <- levels(as.factor(all_division_names$common_division_name))
 
 ### now read in the intertidal species list
-
-View(species_list_aggregate)
-
 itz_names <- levels(as.factor(species_list_aggregate$subtype))
 
-itz_names
-keen_names
+# Looking at these lists of names, only small-ish adjustments need to be made here
 
-# Looking at these names, only small-ish adjustments need to be made here
-
+# fuzzy match the intertidal name list with the KEEN names
 matches_in_keen <- amatch(itz_names, keen_names, maxDist = 1)
 
 keen_name <- c()
