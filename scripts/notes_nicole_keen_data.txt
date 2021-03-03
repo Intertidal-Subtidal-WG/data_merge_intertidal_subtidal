@@ -1,0 +1,64 @@
+My goal was to merge (most) data at the transect/year level across .csv files provided
+
+
+Starting files
+
+keen_cover <- this is percent cover data, included in final dataframe
+keen_fish <- these are fish counts, included in final dataframe
+keen_quads <- these are quadrat count data, I did include these in final dataframe
+keen_swath <- these are swath counts, I did include these in final dataframe
+kelp_quads_biomass <- these are kelp biomass estimates, I did include these in final dataframe
+
+keen_kelp <- these are kelp morphology data, I did not include these in final dataframe
+keen_sites <- these are site data, I did include these in final dataframe yet
+
+
+General strategy
+
+Clean up and subset data in each file to remove rare species, then reduce to the five main identifiers 
+(NETWORK, PI, YEAR, SITE, TRANSECT), some identifier of group (species or substrate, column named ID), 
+and some quantative measure (e.g, percent cover, column named QUANTITY)
+Note: not all files had MONTH and DAY so didn't include those as identifiers
+
+To the ID column, I appended the source of the data to differentiate between units/species represented multiple files
+
+Data source abbreviations (at end of ID column)
+
+keen_cover <- PERCOV
+keen_fish <- FC
+kelp_quads_biomass <- KB
+keen_quads <- QD
+keeN_swath <- SW
+
+NOTE I DROPPED TRANSECTS WITHOUT DATA IN keen_sites WILL FIX THIS LATER
+
+Specific decisions in each starting file
+
+keen_cover 
+
+looks to me like all percent cover estimates are already at the transect level
+combined substrate types and species into ID column
+removed ~ 10 rows with an undefined species code (as defined in KEEN ONE New England Species List v1.3.4.xlsx)
+removed any species groups with <50% percent cover SUMMED OVER THE ENTIRE DATASET
+
+keen_fish
+
+looked like TOAN was meant to be TAON so fixed that
+removed young of year then summed remaining size classes
+
+keen_kelp_quads_biomass
+
+aggregated data at transect/year level
+
+keen_quads
+
+removed species with fewer than 10 individuals found in entire dataset
+summed species across size classes
+
+keen_swath
+
+aggregated data at transect/year level
+removed species with fewer than 10 individuals found in entire dataset
+summed species across size classes
+
+

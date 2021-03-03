@@ -1,0 +1,10 @@
+Code,Substrate
+P,pebbles (<5cm)
+C,cobble (<25cm)
+BS,boulder (25-50cm)
+BM,boulder (50-100cm)
+BL,boulder (>100cm)
+B,bedrock
+SS,shallow sand (<1cm)
+SH,shell debris
+S,sand (>1cm)
