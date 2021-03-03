@@ -284,7 +284,7 @@ p <- full_spplist %>%
   geom_tile(show.legend = F,color="grey20",size=.25) +
   scale_fill_manual(values = c("transparent","lightblue"))+
   labs(x=NULL,y=NULL,
-       title = "Species present in both intertidal and subtitle datasets") + 
+       title = "Species present in both intertidal and subtidal datasets") + 
   ggthemes::theme_few() +
   geom_vline(xintercept = 3.5,color="grey20",size=1)+
   scale_x_discrete(position = "top")+
@@ -564,4 +564,16 @@ ggsave(p2,
 
 
 
+int_counts %>% distinct(transect) %>% arrange(transect)
 
+
+int_spp_thresholds_total %>% 
+  pivot_wider(names_from = dataset,
+              values_from = num_years,
+              values_fill = NA ) %>%
+  mutate(sum = rowSums(across(where(is.numeric)),na.rm = T)) %>%
+  arrange(desc(sum)) %>%
+  select(-sum) %>%
+  write.csv(file=here("outputs","top_intertidal_spp.csv"),
+            row.names = F)
+?write.csv
