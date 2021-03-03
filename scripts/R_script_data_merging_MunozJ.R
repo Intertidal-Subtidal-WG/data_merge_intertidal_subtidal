@@ -38,6 +38,7 @@ library(lubridate)
 
 loadfonts()
 
+
 # Dataset subtidal_KEEN --------------------------------------------------
 # 1. Read the  Data----------------
 keen_cover<-read.csv ("keen_cover.csv", header=TRUE, strip.white=TRUE)
@@ -48,7 +49,7 @@ keen_sites<-read.csv ("keen_sites.csv", header=TRUE, strip.white=TRUE)
 keen_swath<-read.csv ("keen_swath.csv", header=TRUE, strip.white=TRUE)
 kelp_quads_biomass<-read.csv ("kelp_quads_biomass.csv", header=TRUE, strip.white=TRUE)
 
-#2.check the structure and variable type.
+#2.check the structure and variable types.
 #Make sure that teh variables are being read  consistently in teh different files 
 
 str(keen_cover)
@@ -59,49 +60,115 @@ str(keen_sites)
 str(keen_swath)
 str(keen_quads)
 
+is.integer(keen_quads$QUAD)
+keen_quads$QUAD<-as.character(keen_quads$QUAD)
 
 
-#Step 3. check for the unique values for each variable
+
+# 3. check for the unique values for each data set
+
+unique(keen_cover$YEAR)
+unique(keen_cover$MONTH) 
+unique(keen_cover$COMMON.DIVISION.NAME)
+unique(keen_cover$SPECIES)
+unique(keen_cover$SP_CODE) 
+
+#4. check for the unique values for each data set, particularly for variables that are shared for example transect
+#In this case transect is consistent in all files except for the keen_sites, which have 4 more transects than the rest ()
+unique(keen_cover$TRANSECT)
+unique(keen_fish$TRANSECT)
+unique(keen_kelp$TRANSECT)
+unique(keen_quads$TRANSECT)
+unique(keen_swath$TRANSECT)
+unique(keen_sites$TRANSECT)
+
+#5. Add a column that specify the method used to collect the data
+#keen_cover<-mutate(keen_cover$SAMPLING_METHOD) Error 
+
+#6. Merge data  sets  from all methods in one file (There is a new colunm which identify each file by sampling method)
+
+keen_all_methods_merged<-bind_rows(keen_fish,keen_quads)
+keen_all_methods_merged<-bind_rows(keen_all_methods_merged,keen_swath)
+keen_all_methods_merged<-bind_rows(keen_all_methods_merged,keen_kelp)
+keen_all_methods_merged<-bind_rows(keen_all_methods_merged,keen_cover)
+
+#OUTPUT FILE
+write.csv(keen_all_methods_merged, "keen_all_methods_merged.csv")
+
+#6.a.Merge with sitedescription file if needed
+
+#First create a colum that is common betwen the two data sets
+
+keen_sites<-unite_(keen_sites, "YEAR_MONTH_DAY_TRANSECT", c("YEAR","MONTH","DAY","TRANSECT"),remove=FALSE )
+keen_all_methods_merged<-unite (keen_all_methods_merged, "YEAR_MONTH_DAY_TRANSECT", c("YEAR","MONTH","DAY","TRANSECT"),remove=FALSE)
+
+#select (keen_sites) to avoid duplicate variables when merging
+
+keen_sites<-select(keen_sites, -NETWORK,-PI,-YEAR,-MONTH,-DAY, -SITE,-TRANSECT)
+keen_all_methods_site_merged<-left_join(keen_all_methods_merged, keen_sites, by = "YEAR_MONTH_DAY_TRANSECT")
+
+#OUTPUT FILE
+write.csv(keen_all_methods_site_merged, "keen_all_methods_site_merged.csv")
+
+#7# Explore the dataset
+
+unique(keen_all_methods_site_merged$SP_CODE)
+
+
+
+###### Exercise filter species of interest
+
+AGCL<-filter(keen_all_methods_site_merged, SP_CODE=="AGCL" )
+
+TAAD<-filter(keen_all_methods_merged, SP_CODE=="TAAD" )
+
+
+
+plot(COUNT~YEAR, data=AGCL)
+
+ggplot(AGCL, aes(y=COUNT, x=YEAR, colour=factor(SAMPLING_METHOD)))+
+  geom_point (aes(y=COUNT, x=YEAR))
+
+ggplot(TAAD, aes(y=COUNT, x=YEAR, colour=factor(SAMPLING_METHOD)))+
+  geom_point (aes(y=COUNT, x=YEAR))
+
+
+
+
+
+
+
+
+
+#6create a presence absence data matrix per transect
+
+
+#4. Transpose from wide to long format each files 
+
+#a<-pivot_longer(keen_kelp,cols="SP_CODE", values_to="count")
+
+
+
+
+
+#Things to do 
+# In the cover data set Create an age column to separate column size with include both size and age (By Jarret recommendation is important to keep it together)
+# In the fish data, I am not sure how are variables SIZE and SIZE.FISH different
+#create a file of species code and species names maybe in the readme as a table, (Amelia is working on this)
+
+#Unique columns per file 
+unique(keen_cover) PERCENT_COVER
+unique(keen_fish) QUAD, SIDE, FISH.SIZE,COUNT, AREA
+keen_quads QUAD,SIDE, COUNT, AREA
+keen_swath QUAD, SIDE, COUNT, AREA
+keen_kelp  BLADE_LENGTH_CM, WIDTH_CM, STIPE_LENGTH_CM, WET_WEIGHT, DRY_WEIGHT
+
+View (keen_cover)
 #Make sure that they are consistent with the metadata
 
-unique(data1995_2019$date_yymmdd)
-unique(data1995_2019$year)                         
-unique(data1995_2019$month)                        
-unique(data1995_2019$day)                          
-unique(data1995_2019$ julian_day )                  
-unique(data1995_2019$ survey_start_time)           
-unique(data1995_2019$ survey_end_time)              
-unique(data1995_2019$ zone_start_time)              
-unique(data1995_2019$ zone_end_time)                
-unique(data1995_2019$ effort_per_zone_min)          
-unique(data1995_2019$ zone_BIEAP)                  
-unique(data1995_2019$ zone_BIEAP_description)      
-unique(data1995_2019$ latitude)                  
-unique(data1995_2019$ longitud)   
-unique(data1995_2019$ species_code)  
-unique(data1995_2019$ species_common_name)         
-unique(data1995_2019$ species_scientific_name)     
-unique(data1995_2019$ order)                        
-unique(data1995_2019$ family)                      
-unique(data1995_2019$ number_individuals)          
-unique(data1995_2019$ max_detection_distance_m)     
-unique(data1995_2019$ males)                      
-unique(data1995_2019$ females)                      
-unique(data1995_2019$ juveniles)                   
-unique(data1995_2019$ unknown_sex)                  
-unique(data1995_2019$ pairs)                        
-unique(data1995_2019$ observer_1)                   
-unique(data1995_2019$ observer_2)                   
-unique(data1995_2019$ observer_3)                   
-unique(data1995_2019$ cloud_cover)                 
-unique(data1995_2019$ precipitation_mm) 
-unique(data1995_2019$ visibility_m)                 
-unique(data1995_2019$ wind_beaufort_description)    
-unique(data1995_2019$ seastate_beaufort_description)
-unique(data1995_2019$ tide_m)                       
-unique(data1995_2019$ temperature_c)              
-unique(data1995_2019$ disturbance)                 
-unique(data1995_2019$ nasal_disk )                  
-unique(data1995_2019$ comments) 
+
+
+
+
 
 #Step 4#Combine  the dat of the new season with the master database ##
