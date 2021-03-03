@@ -98,6 +98,8 @@ int_sizes_spp <- int_sizes %>%
 
 
 
+#----
+
 
 # Step 2. Upload Data - KEEN first
 #--------------------------------------------------------------
@@ -256,7 +258,7 @@ full_spplist %>%
   arrange(desc(sum)) %>% view()
 
 
-
+# make plot ============================================================
 p <- full_spplist %>% 
   mutate(present = 1) %>%
   pivot_wider(names_from = dataset,
@@ -324,3 +326,242 @@ ggsave(filename = here("outputs","species_in_surveys.png"),
        height = 10,
        width = 9,
        dpi=200)
+
+
+#===========================================================================
+#===========================================================================
+# Now repeat with thresholds - only species present in >25% of years
+#===========================================================================
+#===========================================================================
+
+
+# Get Int Counts Species with Threshold --------------------------------------------------
+int_spp %>% glimpse()
+range(int_counts$year)
+
+# ok so this dataset goes from 1982-2017. 36 years in total. 
+# so first I will filter for species that show up in >=9 years, 
+# or 25% of the possible years.
+
+int_counts_spp_threshold <- 
+  # start with full data
+  int_counts %>% 
+  
+  # rename column to name for consistency
+  rename(name = organism) %>%
+  
+  # remove parenthetical outliers (e.g. canopy, cover, egg case)
+  separate(col = name, into =c("name","type"), sep=" \\(") %>% 
+  mutate(part = gsub(")","",type)) %>%
+  # remove parenthetical specificity for now
+  select(-type) %>% 
+  
+  # add presence / absence column binary
+  mutate(present = case_when(count == "p" | count > 0  ~ 1,
+                             TRUE ~ 0)) %>%
+  
+  # now pull only spp that were present at some time
+  filter(present ==1) %>%
+  
+  # collapse into species x year
+  nest_by(name,year)  %>%
+  
+  # count number of years that spp is present
+  group_by(name) %>%
+  add_count(name = "num_years") %>%
+  
+  # filter spp that are present in 9+ years
+  filter(num_years >= 9) %>%
+  
+  # unnest
+  unnest(data) %>%
+
+  # pull names column 
+  distinct(name,num_years) %>%
+  arrange(desc(num_years)) %>%
+  mutate(dataset = "int_counts")
+# ok, so this massively decreased number of species present, from 74 to 31. 
+
+
+
+
+
+# Get Int Cover Species With Threshold---------------------------------------------------
+range(int_cover$year)
+# ok so this dataset goes from 1982-2017. 36 years in total. 
+# so first I will filter for species that show up in >=9 years, 
+# or 25% of the possible years.
+
+int_cover_spp_threshold <-
+int_cover %>% 
+  
+  # rename column to name for consistency
+  rename(name = organism) %>%
+  
+  # remove parenthetical outliers (e.g. canopy, cover, egg case)
+  separate(col = name, into =c("name","type"), sep=" \\(") %>% 
+  mutate(type = gsub(")","",type)) %>%
+  # remove parenthetical specificity for now
+  select(-type) %>% 
+  
+  # many percent_cover values have notes in them. 
+  # need to separate those from the numbers so like "75 phymato" becomes 75
+  drop_na(percent_cover) %>%
+  mutate(percent_cover_numeric = as.numeric(str_extract(percent_cover, "\\-*\\d+\\.*\\d*"))) %>%
+  
+  
+  # add presence / absence column binary - when cover is > 0 or marked as "present". 
+  mutate(present = case_when(percent_cover_numeric > 0  | percent_cover == "p" ~ 1,
+                             TRUE ~ 0))  %>%
+  
+  # now pull only spp that were present at some time
+  filter(present ==1) %>%
+  
+  # collapse into species x year
+  nest_by(name,year)  %>%
+  
+  # count number of years that spp is present
+  group_by(name) %>%
+  add_count(name = "num_years") %>%
+  
+  # filter spp that are present in 9+ years
+  filter(num_years >= 9) %>%
+  
+  # unnest
+  unnest(data) %>%
+  
+  # pull names column 
+  distinct(name,num_years) %>%
+  arrange(desc(num_years)) %>%
+  mutate(dataset = "int_cover")
+
+nrow(int_cover_spp)
+nrow(int_cover_spp_threshold)
+# ok, here we decreased from 92 to 42
+
+
+
+
+# Get Int Sizes Species with Threshold---------------------------------------------------
+int_sizes_spp_threshold <-
+  int_sizes%>% 
+  
+  # rename column to name for consistency
+  rename(name = organism) %>%
+  
+  # filter spp with no data
+  drop_na(count) %>%
+  
+  # collapse into species x year
+  nest_by(name,year)  %>%
+  
+  # count number of years that spp is present
+  group_by(name) %>%
+  add_count(name = "num_years") %>%
+
+  # filter spp that are present in 9+ years
+  filter(num_years >= 9) %>%
+  
+  # unnest
+  unnest(data) %>%
+  
+  # pull names column 
+  distinct(name,num_years) %>%
+  arrange(desc(num_years)) %>%
+  mutate(dataset = "int_sizes")
+
+nrow(int_sizes_spp_threshold)
+nrow(int_sizes_spp)
+# ok, this one didnt change (both have 4 spp)
+
+
+
+
+
+#----
+
+# Make Intertidal common species table
+int_spp_thresholds_total <-
+  rbind(int_counts_spp_threshold,
+        int_cover_spp_threshold,
+        int_sizes_spp_threshold)
+
+
+pal <- wesanderson::wes_palette("Zissou1")
+
+p2 <- 
+int_spp_thresholds_total %>% 
+  pivot_wider(names_from = dataset,
+              values_from = num_years,
+              values_fill = NA ) %>%
+  mutate(sum = rowSums(across(where(is.numeric)),na.rm = T)) %>%
+  pivot_longer(cols = c(2:4),names_to = "dataset",values_to = "num_years") %>%
+  group_by(name) %>%
+  arrange(desc(sum)) %>%
+  mutate(label = case_when(dataset == "int_counts" ~ "Intertidal\nCounts",
+                           dataset == 'int_cover' ~ "Intertidal\n% Cover",
+                           dataset == "int_sizes" ~ "Intertidal\nSizes")) %>%
+  # plot it as a table
+  ggplot(aes(x=label,y=reorder(name,sum),fill=num_years)) +
+  geom_tile(color="grey20",size=.25) +
+  scale_fill_gradientn(colours=pal,na.value = "transparent")+
+  labs(x=NULL,y=NULL,
+       title = "Intertidal species in 25% or more of years sampled",
+       fill = "Years Present\nin Dataset") + 
+  ggthemes::theme_few() +
+  scale_x_discrete(position = "top")+
+  coord_cartesian(xlim=c(.5,3.5),expand = F,clip = "off") +
+  theme(legend.title = element_text(family = "Open Sans Semibold",
+                                    size=10,
+                                    margin = margin(b=5)),
+        legend.margin = margin(l=40),
+        legend.box.background = element_blank(),
+        legend.background = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_text(family="Open Sans"),
+        axis.text.x=element_text(family="Open Sans Semibold"),
+        plot.title = element_text(family="Open Sans",hjust=0.5,margin=margin(b=5), size=18),
+        plot.title.position = "plot"
+  ) +
+  guides(fill=guide_colorbar(barwidth = unit(.2,"in"),
+                              barheight = unit(7.5,"in"),
+                              ticks.colour = "black",
+                              frame.colour = "black",
+                              title.position = "top"))+
+  annotate(geom="segment",
+           x=3.9,xend=3.9,
+           y=3,yend=nrow(int_spp_thresholds_total %>% distinct(name))-1.5,
+           arrow = arrow(length = unit(2, "mm"),
+                         ends = "first")
+  )+
+  annotate(geom="text",
+           x=3.9,
+           y=2.75,
+           label = "Present in\nfewer years",
+           lineheight=.75,
+           hjust=0.5,
+           vjust=1,
+           family="Open Sans",
+           size=3.25
+  )+
+  annotate(geom="text",
+           x=3.9,
+           y=nrow(int_spp_thresholds_total %>% distinct(name))-1,
+           label = "Present in\nmany years",
+           lineheight=.75,
+           hjust=0.5,
+           vjust=0,
+           family = "Open Sans",
+           size=3.25
+  )+
+  theme(plot.margin = margin(t=5,r=5,b=5,l=5,unit = "mm")) 
+
+ggsave(p2,
+       filename = here("outputs","species_in_intertidal.png"),
+       height = 10,
+       width = 7.5,
+       dpi=200)
+
+
+
+
