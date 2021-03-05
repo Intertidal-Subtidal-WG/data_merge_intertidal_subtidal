@@ -45,18 +45,19 @@ combined_data <- bind_rows(subtidal, intertidal) %>%
 divisions <- read_csv("tidy_data/division_name_keys.csv") %>%
   rename_all(toupper)
 
-COMMON.DIVISION.NAME
-COMMON.DIVISION.NAME
-
 #messy dictionary merge
-combined_data_t <- combined_data %>%
-  left_join(combined_data, 
-            divisions %>% select(-COMMON.DIVISION.NAME)) %>%
-  left_join(divisions %>% select(-SUBTYPE)) %>% 
-  rename(cdn = COMMON_DIVISION_NAME) %>%
+combined_data <- combined_data %>%
+  left_join(divisions %>% select(-COMMON.DIVISION.NAME) %>%
+              filter(!is.na(SUBTYPE))) %>%
+  left_join(divisions %>% select(-SUBTYPE) %>%
+              filter(!is.na(COMMON.DIVISION.NAME)) %>%
+              rename(cdn = COMMON_DIVISION_NAME)) %>%
   mutate(COMMON_DIVISION_NAME = 
-           ifelse(is.na(COMMON_DIVISION_NAME, cdn, COMMON_DIVISION_NAME))) %>%
-  select(-cdn)
+           ifelse(is.na(COMMON_DIVISION_NAME), 
+                        cdn, 
+                        COMMON_DIVISION_NAME)) %>%
+  select(-cdn) %>%
+  select(-COMMON.DIVISION.NAME, -SUBTYPE)
 
 
 #Get site averages for the datasets
@@ -76,7 +77,7 @@ combined_data_transect <- combined_data %>%
   filter(has_intertidal) %>%
   select(-has_intertidal)
 
-
+#write out the different forms of the data
 write_csv(combined_data, "tidy_data/combined_all_abundance_data.csv")
 saveRDS(combined_data, "tidy_data/combined_all_abundance_data.RDS")
 
