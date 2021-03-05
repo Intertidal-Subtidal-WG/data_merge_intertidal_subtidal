@@ -30,14 +30,15 @@ intertidal <- intertidal %>%
            across(MEASURE:GENUS)) %>%
   summarize(VALUE = mean(VALUE)) %>%
   ungroup() %>%
-  select(YEAR, SITE, TRANSECT, INTERTIDAL_TRANSECT, 
+  select(YEAR, SITE, TRANSECT, INTERTIDAL_TRANSECT, LEVEL,
          PROTOCOL, ORGANISM, ORGANISM_TYPE, MEASURE, VALUE, AREA, everything())
 
 
 #join the datasets
 combined_data <- bind_rows(subtidal, intertidal) %>%
   filter(YEAR>2013) %>% #so it's constrained to years that both were conducted
-  filter(!is.na(TRANSECT))
+  filter(!is.na(TRANSECT)) %>%
+  select(YEAR:INTERTIDAL_TRANSECT, LEVEL, PROTOCOL:SIZE, ORGANISM_TYPE, everything()) #some reordering for readability
 
 write_csv(combined_data, "tidy_data/combined_all_abundance_data.csv")
 saveRDS(combined_data, "tidy_data/combined_all_abundance_data.RDS")
