@@ -66,7 +66,7 @@ combined_int <- combined_int %>%
   rename_all(toupper) %>%
   select(SITE, TRANSECT, INTERTIDAL_TRANSECT, YEAR, everything()) %>%
   dplyr::filter(DATA_TAKEN != "no") %>%
-  mutate(AREA = 0.04)
+  mutate(AREA = 0.04, TIDE_HEIGHT_REL_MLLW = (13-LEVEL)*0.348)
 
 
 #write out
