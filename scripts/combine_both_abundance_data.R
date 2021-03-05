@@ -36,8 +36,8 @@ intertidal <- intertidal %>%
 
 #join the datasets
 combined_data <- bind_rows(subtidal, intertidal) %>%
-  filter(YEAR>2013) #so it's constrained to years that both were conducted
-
+  filter(YEAR>2013) %>% #so it's constrained to years that both were conducted
+  filter(!is.na(TRANSECT))
 
 write_csv(combined_data, "tidy_data/combined_all_abundance_data.csv")
 saveRDS(combined_data, "tidy_data/combined_all_abundance_data.RDS")
