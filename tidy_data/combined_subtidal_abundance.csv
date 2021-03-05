@@ -1581,27 +1581,27 @@ YEAR,MONTH,DAY,SITE,TRANSECT,SP_CODE,VALUE,GROUP,DIVISION.FAMILY,COMMON.DIVISION
 2018,8,31,SW Appledore,South Smith's Cove,S,15,Substrate,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,sand (>1cm),PERCENT_COVER,PERCENT_COVER,NA,NA,NA,NA,NA,26
 2018,8,31,SW Appledore,South Smith's Cove,SL,3.75,Algae,Phaeophyta,Brown Algae,NA,Sugar Kelp,Chromista,Ochrophyta,Phaeophyceae,Laminariales,Laminariaceae,Saccharina,Saccharina latissima,PERCENT_COVER,PERCENT_COVER,NA,NA,NA,NA,NA,26
 2018,8,31,SW Appledore,South Smith's Cove,SS,25,Substrate,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,shallow sand (<1cm),PERCENT_COVER,PERCENT_COVER,NA,NA,NA,NA,NA,26
-2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,14
-2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,14
+2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,14
+2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,14
 2014,7,21,NE Appledore,Devil's Dance Floor,TAAD,2,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,13
-2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,14
+2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,14
 2014,7,18,NE Appledore,Broad Cove,POVI,86,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,18
 2014,7,21,NE Appledore,Devil's Dance Floor,POVI,38,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,13
 2014,7,18,NE Appledore,Norwegian Cove,POVI,24,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,15
-2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,14
-2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,14
+2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,14
+2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,14
 2014,7,18,NW Appledore,Larus Ledge,TAAD,1,FISH,Chordates,Fish,YOY,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,YOY,80,NA,7
-2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,9
+2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,9
 2014,7,18,NW Appledore,Sandpiper Beach,TAAD,3,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,6
 2014,7,21,NW Appledore,Magic 8 Ball,TAAD,86,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,8
 2014,7,18,NW Appledore,Larus Ledge,TAAD,8,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,7
-2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,9
+2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,9
 2014,7,18,NW Appledore,Sandpiper Beach,POVI,2,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,6
 2014,7,21,NW Appledore,Magic 8 Ball,TAAD,6,FISH,Chordates,Fish,10-50,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,10-50,80,NA,8
 2014,7,18,NW Appledore,Larus Ledge,TAAD,1,FISH,Chordates,Fish,10-50,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,10-50,80,NA,7
-2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,9
-2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,9
-2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,9
+2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,9
+2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,9
+2014,7,21,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,9
 2014,7,19,SW Appledore,South Pepperrell,TAAD,0,FISH,Chordates,Fish,YOY,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,YOY,80,NA,28
 2014,7,19,SW Appledore,North Pepperrell,TAAD,10,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,29
 2014,7,17,SW Appledore,North Smith's Cove,TAAD,5,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,27
@@ -1628,14 +1628,14 @@ YEAR,MONTH,DAY,SITE,TRANSECT,SP_CODE,VALUE,GROUP,DIVISION.FAMILY,COMMON.DIVISION
 2015,8,10,NW Appledore,North Head,POVI,12,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,9
 2015,8,10,NW Appledore,Magic 8 Ball,POVI,1,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,8
 2015,8,10,NW Appledore,Larus Ledge,POVI,1,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,7
-2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,26
+2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,26
 2015,8,13,SW Appledore,North Smith's Cove,TAAD,1,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,27
-2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,26
+2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,26
 2015,8,11,SW Appledore,North Pepperrell,TAAD,3,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,29
 2015,8,12,SW Appledore,South Pepperrell,TAON,41,FISH,Chordates,Fish,0-10,Tautog or Blackfish,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautoga,Tautoga onitis,COUNT,FISH,NA,NA,0-10,80,NA,28
-2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,26
-2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,26
-2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,26
+2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,26
+2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,26
+2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,26
 2016,8,9,NE Appledore,Broadway and 42nd,TAAD,31,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,14
 2016,8,9,NE Appledore,Devil's Dance Floor,TAAD,40,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,13
 2016,8,8,NE Appledore,Norwegian Cove,TAAD,6,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,15
@@ -1643,16 +1643,16 @@ YEAR,MONTH,DAY,SITE,TRANSECT,SP_CODE,VALUE,GROUP,DIVISION.FAMILY,COMMON.DIVISION
 2016,8,9,NE Appledore,Broadway and 42nd,TAAD,2,FISH,Chordates,Fish,10-50,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,10-50,80,NA,14
 2016,8,9,NE Appledore,Devil's Dance Floor,TAAD,6,FISH,Chordates,Fish,10-50,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,10-50,80,NA,13
 2016,8,8,NE Appledore,Broad Cove,TAAD,5,FISH,Chordates,Fish,10-50,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,10-50,80,NA,18
-2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,6
+2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,6
 2016,8,9,NW Appledore,Magic 8 Ball,TAAD,3,FISH,Chordates,Fish,YOY,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,YOY,80,NA,8
 2016,8,11,NW Appledore,Larus Ledge,TAAD,13,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,7
-2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,6
+2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,6
 2016,8,9,NW Appledore,Magic 8 Ball,TAAD,3,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,8
 2016,8,11,NW Appledore,North Head,TAAD,4,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,9
-2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,6
+2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,6
 2016,8,11,NW Appledore,North Head,TAAD,2,FISH,Chordates,Fish,10-50,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,10-50,80,NA,9
-2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,6
-2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,6
+2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,6
+2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,6
 2016,8,10,SW Appledore,South Pepperrell,TAAD,17,FISH,Chordates,Fish,YOY,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,YOY,80,NA,28
 2016,8,10,SW Appledore,South Pepperrell,TAON,17,FISH,Chordates,Fish,YOY,Tautog or Blackfish,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautoga,Tautoga onitis,COUNT,FISH,NA,NA,YOY,80,NA,28
 2016,8,10,SW Appledore,North Smith's Cove,TAAD,52,FISH,Chordates,Fish,YOY,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,YOY,80,NA,27
@@ -1662,42 +1662,42 @@ YEAR,MONTH,DAY,SITE,TRANSECT,SP_CODE,VALUE,GROUP,DIVISION.FAMILY,COMMON.DIVISION
 2016,8,10,SW Appledore,North Smith's Cove,TAAD,12,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,27
 2016,8,10,SW Appledore,South Smith's Cove,TAAD,79,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,26
 2016,8,10,SW Appledore,South Smith's Cove,TAAD,3,FISH,Chordates,Fish,10-50,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,10-50,80,NA,26
-2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,14
+2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,14
 2017,8,15,NE Appledore,Broad Cove,POVI,3,FISH,Chordates,Fish,YOY,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,YOY,80,NA,18
 2017,8,16,NE Appledore,Devil's Dance Floor,TAAD,1,FISH,Chordates,Fish,YOY,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,YOY,80,NA,13
-2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,14
-2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,14
-2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,14
+2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,14
+2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,14
+2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,14
 2017,8,15,NE Appledore,Norwegian Cove,POVI,49,FISH,Chordates,Fish,50-100,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,50-100,80,NA,15
-2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,14
+2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,14
 2017,8,15,NW Appledore,Magic 8 Ball,POVI,3,FISH,Chordates,Fish,YOY,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,YOY,80,NA,8
-2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,9
-2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,6
+2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,9
+2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,6
 2017,8,17,NW Appledore,Larus Ledge,POVI,4,FISH,Chordates,Fish,0-10,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,0-10,80,NA,7
-2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,9
-2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,6
+2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,9
+2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,6
 2017,8,17,NW Appledore,Larus Ledge,POVI,3,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,7
-2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,9
-2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,6
-2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,9
-2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,6
-2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,9
-2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,6
-2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,27
-2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,YOY,80,NA,28
+2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,9
+2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,6
+2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,9
+2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,6
+2017,8,15,NW Appledore,North Head,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,9
+2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,6
+2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,27
+2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,YOY,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,YOY,80,NA,28
 2017,8,17,SW Appledore,North Pepperrell,TAAD,2,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,29
-2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,27
-2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,0-10,80,NA,28
+2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,27
+2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,0-10,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,0-10,80,NA,28
 2017,8,16,SW Appledore,South Smith's Cove,TAAD,1,FISH,Chordates,Fish,0-10,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,0-10,80,NA,26
 2017,8,17,SW Appledore,North Pepperrell,TAAD,1,FISH,Chordates,Fish,10-50,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,10-50,80,NA,29
-2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,27
-2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,10-50,80,NA,28
+2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,27
+2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,10-50,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,10-50,80,NA,28
 2017,8,16,SW Appledore,South Smith's Cove,POVI,2,FISH,Chordates,Fish,10-50,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,10-50,80,NA,26
-2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,27
-2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,50-100,80,NA,28
+2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,27
+2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,50-100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,50-100,80,NA,28
 2017,8,16,SW Appledore,South Smith's Cove,POVI,4,FISH,Chordates,Fish,50-100,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,50-100,80,NA,26
-2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,27
-2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,NA,COUNT,FISH,NA,NA,>100,80,NA,28
+2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,27
+2017,8,17,SW Appledore,South Pepperrell,NO_FISH,0,FISH,NA,NA,>100,NA,NA,NA,NA,NA,NA,NA,No Fish,COUNT,FISH,NA,NA,>100,80,NA,28
 2017,8,16,SW Appledore,South Smith's Cove,POVI,1,FISH,Chordates,Fish,>100,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens,COUNT,FISH,NA,NA,>100,80,NA,26
 2018,8,28,NE Appledore,Broad Cove,TAAD,3,FISH,Chordates,Fish,YOY,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,YOY,80,NA,18
 2018,8,28,NE Appledore,Norwegian Cove,TAAD,12,FISH,Chordates,Fish,YOY,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus,COUNT,FISH,NA,NA,YOY,80,NA,15

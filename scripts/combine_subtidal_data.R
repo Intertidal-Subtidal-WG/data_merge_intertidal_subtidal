@@ -18,7 +18,8 @@ keen_cover <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/
 keen_fish <- read_csv("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_fish.csv") %>%
   select(-NETWORK, -PI) %>%
   mutate(SIZE = FISH.SIZE, MEASURE = "COUNT", GROUP = "FISH", PROTOCOL = "FISH") %>%
-  rename(VALUE = COUNT)
+  rename(VALUE = COUNT) %>%
+  mutate(SPECIES = ifelse(SP_CODE=="NO_FISH", "No Fish", SPECIES))
 
 keen_quads <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_quads.csv")%>%
   select(-NETWORK, -PI) %>%
