@@ -40,5 +40,36 @@ combined_data <- bind_rows(subtidal, intertidal) %>%
   filter(!is.na(TRANSECT)) %>%
   select(YEAR:INTERTIDAL_TRANSECT, LEVEL, TIDE_HEIGHT_REL_MLLW, PROTOCOL:SIZE, ORGANISM_TYPE, everything()) #some reordering for readability
 
+
+#load in common division names
+divisions <- read_csv("tidy_data/division_name_keys.csv")
+
+
+#Get site averages for the datasets
+combined_data_site <- combined_data %>%
+  group_by(YEAR, SITE, across(LEVEL:MEASURE), across(AREA:VALID_AUTHORITY)) %>%
+  summarise(MEAN_VALUE = mean(VALUE, na.rm=T),
+            SD_VALUE = sd(VALUE, na.rm=T),
+  ) %>%
+  ungroup()
+
+#filter to where both have data
+
+combined_data_transect <- combined_data %>%
+  group_by(TRANSECT) %>%
+  mutate(has_intertidal = sum(stringr::str_detect(PROTOCOL, "Intertidal"))>0) %>%
+  ungroup() %>%
+  filter(has_intertidal) %>%
+  select(-has_intertidal)
+
+
 write_csv(combined_data, "tidy_data/combined_all_abundance_data.csv")
 saveRDS(combined_data, "tidy_data/combined_all_abundance_data.RDS")
+
+
+write_csv(combined_data_site, "tidy_data/combined_all_abundance_data_site.csv")
+saveRDS(combined_data_site, "tidy_data/combined_all_abundance_data_site.RDS")
+
+
+write_csv(combined_data_transect, "tidy_data/combined_all_abundance_data_transect_match.csv")
+saveRDS(combined_data_transect, "tidy_data/combined_all_abundance_data_transect_match.RDS")
