@@ -30,7 +30,11 @@ keen_swath <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/
   mutate(MEASURE = "COUNT", PROTOCOL = "SWATH") %>%
   rename(VALUE = COUNT)
 
-
+#ADD SUBSTRATE SPECIES NAME
+substrate <- read_csv("tidy_data/substrate_translation.csv")
+keen_cover <- left_join(keen_cover, substrate) %>%
+  mutate(SPECIES = ifelse(GROUP == "Substrate", SUBSTRATE, SPECIES)) %>%
+  select(-SUBSTRATE)
 
 # #size - make long
 # keen_kelp <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_kelp.csv") %>%
