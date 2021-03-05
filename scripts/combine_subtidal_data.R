@@ -1,5 +1,6 @@
 #'----------------------------------------------------------
-#' Read in and combine the SML subtidal datasets
+#' @description Read in and combine the SML subtidal datasets
+#' @author Jarrett Byrnes
 #'----------------------------------------------------------
 
 library(readr)
@@ -31,15 +32,15 @@ keen_swath <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/
 
 
 
-#size - make long
-keen_kelp <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_kelp.csv") %>%
-  select(-NETWORK, -PI) %>%
-  group_by(YEAR, SITE, TRANSECT, SP_CODE) %>%
-  mutate(INDIVIDUAL = 1:n()) %>%
-  ungroup() %>%
-  pivot_longer(cols = BLADE_LENGTH_CM:WIDTH_CM,
-               names_to = "MEASURE",
-               values_to = "VALUE")
+# #size - make long
+# keen_kelp <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_kelp.csv") %>%
+#   select(-NETWORK, -PI) %>%
+#   group_by(YEAR, SITE, TRANSECT, SP_CODE) %>%
+#   mutate(INDIVIDUAL = 1:n()) %>%
+#   ungroup() %>%
+#   pivot_longer(cols = BLADE_LENGTH_CM:WIDTH_CM,
+#                names_to = "MEASURE",
+#                values_to = "VALUE")
 
 
 #combine abundance

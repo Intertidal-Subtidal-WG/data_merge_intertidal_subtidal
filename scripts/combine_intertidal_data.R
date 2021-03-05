@@ -1,5 +1,6 @@
 #'----------------------------------------------------------
-#' Read in and combine the SML intertidal datasets
+#' @description Read in and combine the SML intertidal datasets
+#' @author Jarrett Byrnes
 #'----------------------------------------------------------
 
 library(readr)
