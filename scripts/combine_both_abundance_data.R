@@ -42,7 +42,21 @@ combined_data <- bind_rows(subtidal, intertidal) %>%
 
 
 #load in common division names
-divisions <- read_csv("tidy_data/division_name_keys.csv")
+divisions <- read_csv("tidy_data/division_name_keys.csv") %>%
+  rename_all(toupper)
+
+COMMON.DIVISION.NAME
+COMMON.DIVISION.NAME
+
+#messy dictionary merge
+combined_data_t <- combined_data %>%
+  left_join(combined_data, 
+            divisions %>% select(-COMMON.DIVISION.NAME)) %>%
+  left_join(divisions %>% select(-SUBTYPE)) %>% 
+  rename(cdn = COMMON_DIVISION_NAME) %>%
+  mutate(COMMON_DIVISION_NAME = 
+           ifelse(is.na(COMMON_DIVISION_NAME, cdn, COMMON_DIVISION_NAME))) %>%
+  select(-cdn)
 
 
 #Get site averages for the datasets
