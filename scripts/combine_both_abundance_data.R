@@ -26,7 +26,7 @@ subtidal <- subtidal %>%
 #intertidal to tide height:transect level for each protocol
 intertidal <- intertidal %>%
   group_by(YEAR, SITE, TRANSECT, INTERTIDAL_TRANSECT, LEVEL, 
-           ORGANISM, ORGANISM_TYPE, AREA,
+           TIDE_HEIGHT_REL_MLLW, ORGANISM, ORGANISM_TYPE, AREA,
            across(MEASURE:GENUS)) %>%
   summarize(VALUE = mean(VALUE)) %>%
   ungroup() %>%
@@ -38,7 +38,7 @@ intertidal <- intertidal %>%
 combined_data <- bind_rows(subtidal, intertidal) %>%
   filter(YEAR>2013) %>% #so it's constrained to years that both were conducted
   filter(!is.na(TRANSECT)) %>%
-  select(YEAR:INTERTIDAL_TRANSECT, LEVEL, PROTOCOL:SIZE, ORGANISM_TYPE, everything()) #some reordering for readability
+  select(YEAR:INTERTIDAL_TRANSECT, LEVEL, TIDE_HEIGHT_REL_MLLW, PROTOCOL:SIZE, ORGANISM_TYPE, everything()) #some reordering for readability
 
 write_csv(combined_data, "tidy_data/combined_all_abundance_data.csv")
 saveRDS(combined_data, "tidy_data/combined_all_abundance_data.RDS")
