@@ -92,8 +92,8 @@ ggplot(troph,
            y = intertidal_count_littorina_littorea,
            color = site) ) +
   geom_point() +
-  labs(x = "Jonah crabs per sq. m",
-       y = "Periwinkles per sq. m")
+  labs(x = "Subtidal Jonah crabs per sq. m",
+       y = "Intertidal Periwinkles per sq. m")
   
 ```
 
