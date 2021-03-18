@@ -1,0 +1,100 @@
+---
+title: "Demo of Using the Combined Data"
+author: "Jarrett Byrnes"
+date: "3/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, 
+                      message = FALSE)
+
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+## The Combined Data
+
+The combined intertidal/subtidal data is in a long format with all abundance data sets combined. Let's take a look.
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+dat <- readRDS("tidy_data/combined_all_abundance_data.RDS")
+
+head(dat)
+```
+
+Year through intertidal transect columns give us identifying information. Level gives us information about tide height, and if it is NA then we are in the subtidal. We then have protocol, indicating how organisms were assessed, organism, the name used in each dataset to identify the organism commonly,  size for those that were split into adults and juveniles (subtidal data) or other size classes (e.g., fish), organism type for intertidal surveys when looking at primary or secondary substrate, measure to give us units for the following value averaged across sample replicates, and after value the area of a single replicate in square meters. After this is group and taxonomic information which varies slightly between intertidal and subtidal datasets.
+
+The advantage to the long format is that it will be easier to aggregate groups later on in analysis. Also, it's easy to `tidyr::pivot_wider()` to make a wide data frame for analysis, while maintaining a lot of data in a compact form.
+
+## Example with Corralina officinalis
+
+To use these data together for an analysis, simply filter and select to what you want and then pivot. For example, let's look at the relationship between Saccharina latissima in the different surveys. We'll pull the intertidal to just be the 0 or -1 levels. We will also remove juveniles.
+
+```{r sac}
+co <- dat %>%
+  filter(ORGANISM == "Corallina officinalis") %>%
+  filter(is.na(SIZE)) %>% #no juvies
+  group_by(across(YEAR:INTERTIDAL_TRANSECT), MEASURE) %>%
+  summarize(VALUE = mean(VALUE)) %>%
+  ungroup()
+```
+
+Great! Now let's pivot wider, assuming that any missing measurements are 0.
+
+```{r sac_pivot}
+co_wide <- co %>%
+  pivot_wider(names_from = MEASURE,
+              values_from = VALUE, 
+              values_fill = 0) %>%
+  rename(INTERTIDAL_COVER = Percent_Cover)
+```
+
+Cool! What's this look like? 
+```{r sca_plot}
+ggplot(data = co_wide,
+       aes(x = PERCENT_COVER, y = INTERTIDAL_COVER, color = TRANSECT)) +
+  geom_point() +
+  labs(x = "Corralina % cover in the subtidal",
+       y = "Corralina % cover in the lower intertidal",
+       color = "Transect")
+```
+
+
+## Comparing multiple species
+
+What if we want to look at >1 species? How about comparing subtidal *Cancer borealis*? Let's filter out these species, sum across tide levels, and then pivot wider to plot.
+
+
+```{r make_com}
+troph <- dat %>%
+  filter(ORGANISM %in% c("Cancer borealis", "Littorina littorea")) %>%
+  filter(PROTOCOL %in% c("SWATH", "Intertidal_Count")) %>%
+  group_by(across(YEAR:INTERTIDAL_TRANSECT),
+           PROTOCOL, ORGANISM) %>%
+  summarize(VALUE = mean(VALUE)) %>%
+  ungroup() %>%
+  pivot_wider(names_from = c(PROTOCOL, ORGANISM),
+              values_from = VALUE, 
+              values_fill = 0) %>%
+  janitor::clean_names() #what? they were dirty
+```
+
+
+```{r plot_troph}
+ggplot(troph,
+       aes(x = swath_cancer_borealis,
+           y = intertidal_count_littorina_littorea,
+           color = site) ) +
+  geom_point() +
+  labs(x = "Subtidal Jonah crabs per sq. m",
+       y = "Intertidal Periwinkles per sq. m")
+  
+```
+
+Huh!
