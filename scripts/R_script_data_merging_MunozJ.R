@@ -22,9 +22,10 @@ install.packages("devtools")
 install.packages("lme4")
 install.packages("knitr")
 install.packages("ts")
-# To create presnece absence matrix
+# To create preseNce absence matrix
 install.packages("letsR")
-
+install.packages("reshape")
+install.packages("reshape2")
 
 
 library(tidyverse)
@@ -37,6 +38,8 @@ library(extrafont)
 library(visreg)
 library(lubridate)
 library(letsR)
+library(reshape)
+library(reshape2)
 #library(ts)
 
 
@@ -108,8 +111,12 @@ keen_all_methods_merged<-unite (keen_all_methods_merged, "YEAR_MONTH_DAY_TRANSEC
 
 #select (keen_sites) to avoid duplicate variables when merging
 
-keen_sites<-select(keen_sites, -NETWORK,-PI,-YEAR,-MONTH,-DAY, -SITE,-TRANSECT)
+# I dont now what is happening with teh select function
+
+keen_sites<-select(keen_sites,-c(NETWORK,PI,YEAR,MONTH,DAY,SITE,TRANSECT))
 keen_all_methods_site_merged<-left_join(keen_all_methods_merged, keen_sites, by = "YEAR_MONTH_DAY_TRANSECT")
+
+select(starwars, -c(name, height, mass))
 
 #OUTPUT FILE
 write.csv(keen_all_methods_site_merged, "keen_all_methods_site_merged.csv")
@@ -118,19 +125,24 @@ write.csv(keen_all_methods_site_merged, "keen_all_methods_site_merged.csv")
 
 unique(keen_all_methods_site_merged$SP_CODE)
 
+#summarize by transect
+
 #8#Merge datasets for counts only ( keen_fish.	keen_quads,	keen_swath,)
 keen_all_counts_merged<-bind_rows(keen_fish,keen_quads)
 keen_all_counts_merged<-bind_rows(keen_all_counts_merged,keen_swath)
 
+write.csv(keen_all_counts_merged, "keen_all_counts_merged.csv")
+
+
 #8.1. Merge with keen.sites for information about sites
 
-keen_sites<-unite_(keen_sites, "YEAR_MONTH_DAY_TRANSECT", c("YEAR","MONTH","DAY","TRANSECT"),remove=FALSE )
-keen_all_counts_merged<-unite (keen_all_counts_merged, "YEAR_MONTH_DAY_TRANSECT", c("YEAR","MONTH","DAY","TRANSECT"),remove=FALSE)
+#keen_sites<-unite_(keen_sites, "YEAR_MONTH_DAY_TRANSECT", c("YEAR","MONTH","DAY","TRANSECT"),remove=FALSE )
+#keen_all_counts_merged<-unite (keen_all_counts_merged, "YEAR_MONTH_DAY_TRANSECT", c("YEAR","MONTH","DAY","TRANSECT"),remove=FALSE)
 
 #select (keen_sites) to avoid duplicate variables when merging
 
-keen_sites<-select(keen_sites, -NETWORK,-PI,-YEAR,-MONTH,-DAY,-SITE,-TRANSECT)
-keen_all_counts_site_merged<-left_join(keen_all_counts_merged, keen_sites, by = "YEAR_MONTH_DAY_TRANSECT")
+#keen_sites<-select(keen_sites, - c(NETWORK,-PI,-YEAR,-MONTH,-DAY,-SITE,-TRANSECT))
+#keen_all_counts_site_merged<-left_join(keen_all_counts_merged, keen_sites, by = "YEAR_MONTH_DAY_TRANSECT")
 
 
 #Create a presence absence matrix _Site_year per species_code; only for groups that have a count data set ()
@@ -139,8 +151,24 @@ keen_all_counts_site_merged<-left_join(keen_all_counts_merged, keen_sites, by = 
 
 #The Keen_kelp data does not need to be use for the counts (PRESENCE/ABSENCE), because kelp was counted in the 
 
-#Presence/Anbsence matrix
-create.matrix()
+
+#######In progress
+
+#Presence/Absence matrix
+
+str(keen_all_methods_merged)
+
+matrix<-dcast(keen_all_counts_merged, YEAR+TRANSECT+SAMPLING_METHOD~SPECIES, value.var ="COUNT")
+
+
+write.csv(matrix, "matrix_abundance_allcounts_Keen_subtidal.csv")
+
+
+str(keen_all_counts_merged)
+
+dcast
+#write.csv(yeartransect_by_sp_matrix, "yeartransect_by_sp_matrix_subtidal.csv")
+
 
 
 
