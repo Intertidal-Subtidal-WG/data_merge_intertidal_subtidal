@@ -58,7 +58,25 @@ abund_combine <- bind_rows(keen_cover,
 readr::write_csv(abund_combine, "tidy_data/allKEEN_combined_subtidal_abundance.csv")
 saveRDS(abund_combine, "tidy_data/allKEEN_combined_subtidal_abundance.RDS")
 
+
+abund_combine_wide <- abund_combine %>%
+  select(-c(SP_CODE, GROUP:GENUS)) %>%
+  group_by(YEAR, SITE, TRANSECT, SPECIES, PROTOCOL) %>%
+  summarize(VALUE = mean(VALUE, na.rm=TRUE)) %>%
+  tidyr::pivot_wider(names_from = c("SPECIES", "PROTOCOL"),
+                     values_from = "VALUE", 
+                     values_fill = 0)
+
+readr::write_csv(abund_combine_wide, "tidy_data/allKEEN_combined_subtidal_abundance_wide.csv")
+
 abund_combine_appledore <- abund_combine %>%
+  filter(SITE %in% c(
+    "NE Appledore",
+    "NW Appledore",
+    "SW Appledore"
+  ))
+
+abund_combine_appledore_wide <- abund_combine_wide %>%
   filter(SITE %in% c(
     "NE Appledore",
     "NW Appledore",
@@ -70,8 +88,10 @@ transect_translate <- read_csv("tidy_data/transect_translate.csv") %>%
   rename(Transect = Subtidal_Transect_Name) %>%
   rename_all(toupper)
 
-abund_combine <- left_join(abund_combine_appledore, transect_translate)
+abund_combine_appledore <- left_join(abund_combine_appledore, transect_translate)
+abund_combine_appledore_wide <- left_join(abund_combine_appledore_wide, transect_translate)
 
 #write out
-readr::write_csv(abund_combine, "tidy_data/combined_subtidal_abundance.csv")
-saveRDS(abund_combine, "tidy_data/combined_subtidal_abundance.RDS")
+readr::write_csv(abund_combine_appledore, "tidy_data/combined_subtidal_abundance.csv")
+readr::write_csv(abund_combine_appledore_wide, "tidy_data/combined_subtidal_abundance_wide.csv")
+saveRDS(abund_combine_appledore, "tidy_data/combined_subtidal_abundance.RDS")
