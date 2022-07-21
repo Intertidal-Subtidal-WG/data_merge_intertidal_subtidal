@@ -10,23 +10,23 @@ library(tidyr)
 setwd(here::here())
 
 # 1. Read the  Data----------------
-keen_cover <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_cover.csv") %>%
+keen_cover <- read_csv ("https://github.com/kelpecosystems/observational_data/raw/master/cleaned_data/keen_cover.csv") %>%
   select(-NETWORK, -PI) %>%
   mutate(MEASURE = "PERCENT_COVER", PROTOCOL = "PERCENT_COVER") %>%
   rename(VALUE = PERCENT_COVER)
 
-keen_fish <- read_csv("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_fish.csv") %>%
+keen_fish <- read_csv("https://github.com/kelpecosystems/observational_data/raw/master/cleaned_data/keen_fish.csv") %>%
   select(-NETWORK, -PI) %>%
   mutate(SIZE = FISH.SIZE, MEASURE = "COUNT", GROUP = "FISH", PROTOCOL = "FISH") %>%
   rename(VALUE = COUNT) %>%
   mutate(SPECIES = ifelse(SP_CODE=="NO_FISH", "No Fish", SPECIES))
 
-keen_quads <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_quads.csv")%>%
+keen_quads <- read_csv ("https://github.com/kelpecosystems/observational_data/raw/master/cleaned_data/keen_quads.csv")%>%
   select(-NETWORK, -PI) %>%
   mutate(MEASURE = "COUNT", PROTOCOL = "QUAD", QUAD = as.character(QUAD)) %>%
   rename(VALUE = COUNT)
   
-keen_swath <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_swath.csv") %>%
+keen_swath <- read_csv ("https://github.com/kelpecosystems/observational_data/raw/master/cleaned_data/keen_swath.csv") %>%
   select(-NETWORK, -PI) %>%
   mutate(MEASURE = "COUNT", PROTOCOL = "SWATH") %>%
   rename(VALUE = COUNT)
@@ -38,7 +38,7 @@ keen_cover <- left_join(keen_cover, substrate) %>%
   select(-SUBSTRATE)
 
 # #size - make long
-# keen_kelp <- read_csv ("https://github.com/brianscheng/SEED/raw/main/data/keen/keen_kelp.csv") %>%
+# keen_kelp <- read_csv ("https://github.com/kelpecosystems/observational_data/raw/master/cleaned_data/keen_kelp.csv") %>%
 #   select(-NETWORK, -PI) %>%
 #   group_by(YEAR, SITE, TRANSECT, SP_CODE) %>%
 #   mutate(INDIVIDUAL = 1:n()) %>%
@@ -55,12 +55,22 @@ abund_combine <- bind_rows(keen_cover,
                            keen_swath) %>%
   mutate(TRANSECT = stringr::str_replace_all(TRANSECT, "^8 Ball", "Magic 8 Ball"))
 
+readr::write_csv(abund_combine, "tidy_data/allKEEN_combined_subtidal_abundance.csv")
+saveRDS(abund_combine, "tidy_data/allKEEN_combined_subtidal_abundance.RDS")
+
+abund_combine_appledore <- abund_combine %>%
+  filter(SITE %in% c(
+    "NE Appledore",
+    "NW Appledore",
+    "SW Appledore"
+  ))
+
 #add the transect translation names
 transect_translate <- read_csv("tidy_data/transect_translate.csv") %>%
   rename(Transect = Subtidal_Transect_Name) %>%
   rename_all(toupper)
 
-abund_combine <- left_join(abund_combine, transect_translate)
+abund_combine <- left_join(abund_combine_appledore, transect_translate)
 
 #write out
 readr::write_csv(abund_combine, "tidy_data/combined_subtidal_abundance.csv")
